@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:woff/pages/first_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'auth/login.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -13,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tiktok',
       theme: ThemeData(brightness: Brightness.dark),
-      home: const FirstPage(),
+      home: const LoginScreen(),
     );
   }
 }

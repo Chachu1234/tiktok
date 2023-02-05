@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:woff/widgets/profileimage.dart';
-
+import '../auth/login.dart';
+import '../common/common.dart';
 import 'album.dart';
 
 class RightPanel extends StatelessWidget {
@@ -18,7 +19,6 @@ class RightPanel extends StatelessWidget {
     this.profileImg,
     this.albumImg,
   });
-
   final Size size;
 
   @override
@@ -35,8 +35,15 @@ class RightPanel extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            const InkWell(
-              child: Icon(
+            InkWell(
+              onTap: () async {
+                final bool? result = await Commonfun().checkuserlooged();
+                if (!result!) {
+                  // ignore: use_build_context_synchronously
+                  changepage(context);
+                }
+              },
+              child: const Icon(
                 Icons.favorite,
                 size: 45,
                 color: Colors.white,
@@ -107,5 +114,11 @@ class RightPanel extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  changepage(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: ((context) {
+      return const LoginScreen();
+    })));
   }
 }
