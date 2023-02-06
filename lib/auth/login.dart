@@ -4,7 +4,7 @@ import '../pages/first_page.dart';
 import '../authservice/auth_service.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class LoginScreen extends StatefulWidget {
   _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen>{
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -21,7 +21,12 @@ class _LoginScreenState extends State<LoginScreen>{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: AnimatedTextKit(
+          animatedTexts: [
+            WavyAnimatedText('Login'),
+          ],
+          isRepeatingAnimation: true,
+        ),
         centerTitle: true,
       ),
       body: Center(
@@ -38,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen>{
             const SizedBox(
               height: 30.0,
             ),
-             SizedBox(
+            SizedBox(
               width: MediaQuery.of(context).size.width / 2,
               child: TextField(
                 controller: _passwordController,
@@ -77,18 +82,18 @@ class _LoginScreenState extends State<LoginScreen>{
             const SizedBox(
               height: 15.0,
             ),
-                SignInButton(
+            SignInButton(
               Buttons.Google,
               onPressed: () async {
                 final isauthenticated = await AuthService().signinwithgoogle();
                 if (isauthenticated!) {
                   final prefs = await SharedPreferences.getInstance();
                   await prefs.setBool('islogged', true);
-           // ignore: use_build_context_synchronously
-               Navigator.push(context, MaterialPageRoute(builder: ((context) {
-               return const FirstPage();
-               })));
-
+                  // ignore: use_build_context_synchronously
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) {
+                    return const FirstPage();
+                  })));
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
@@ -98,7 +103,6 @@ class _LoginScreenState extends State<LoginScreen>{
                 }
               },
             ),
-           
             const SizedBox(
               height: 30.0,
             ),
