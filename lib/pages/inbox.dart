@@ -202,15 +202,17 @@ class Inbox extends StatelessWidget {
                       text: "ajdhasjvhbhsbkjfj",
                       color: Colors.black.withOpacity(0.5)),
                   trailing: SizedBox(
-                    width: size.width * 0.26,
+                    width: size.width * 0.28,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        CommmonIconButton(
-                          color: Colors.red,
-                          child: Texts(text: "Follow", color: Colors.white),
+                      children: [
+                        TextButton(
+                          style: styleButton(Colors.red),
+                          onPressed: () {},
+                          child:
+                              const Texts(text: "Follow", color: Colors.white),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.close,
                           color: Colors.black,
                         ),
@@ -240,15 +242,17 @@ class Inbox extends StatelessWidget {
                       text: "ajdhasjvhbhsbkjfj",
                       color: Colors.black.withOpacity(0.5)),
                   trailing: SizedBox(
-                    width: size.width * 0.26,
+                    width: size.width * 0.28,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        CommmonIconButton(
-                          color: Colors.red,
-                          child: Texts(text: "Follow", color: Colors.white),
+                      children: [
+                        TextButton(
+                          style: styleButton(Colors.red),
+                          onPressed: () {},
+                          child:
+                              const Texts(text: "Follow", color: Colors.white),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.close,
                           color: Colors.black,
                         ),

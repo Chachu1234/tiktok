@@ -11,6 +11,28 @@ class SearchPage extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 35,
+        title: TextField(
+          decoration: InputDecoration(
+              hintText: "Find friends...",
+              hintStyle: const TextStyle(color: Colors.white, fontSize: 18),
+              filled: true,
+              fillColor: Colors.grey.withOpacity(0.5),
+              prefixIcon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              suffixIcon: IconButton(
+                icon: const Icon(
+                  Icons.qr_code_scanner_outlined,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  /* Clear the search field */
+                },
+              ),
+              border: InputBorder.none),
+        ),
         centerTitle: true,
         backgroundColor: Colors.black.withOpacity(0.3),
         leading: const Icon(
@@ -18,37 +40,7 @@ class SearchPage extends StatelessWidget {
           color: Colors.white,
           size: 25,
         ),
-        actions: const [Icon(Icons.stacked_bar_chart_rounded)],
-        title: Container(
-          margin: const EdgeInsets.only(top: 0),
-          width: double.infinity,
-          height: 30,
-          decoration: BoxDecoration(
-              color: Colors.black, borderRadius: BorderRadius.circular(13)),
-          child: Center(
-            child: TextField(
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey.withOpacity(0.8),
-                  prefixIcon: const Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  ),
-                  suffixIcon: IconButton(
-                    icon: const Icon(
-                      Icons.clear,
-                      color: Colors.white,
-                    ),
-                    onPressed: () {
-                      /* Clear the search field */
-                    },
-                  ),
-                  hintText: 'find freinds...',
-                  hintStyle: const TextStyle(color: Colors.white, fontSize: 18),
-                  border: InputBorder.none),
-            ),
-          ),
-        ),
+        actions: const [Icon(Icons.info_outline)],
         elevation: 1,
       ),
       body: SingleChildScrollView(
@@ -72,14 +64,15 @@ class SearchPage extends StatelessWidget {
                     width: size.width * 0.26,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: const [
-                        CommmonIconButton(
-                          color: Colors.red,
-                          child: Texts(
+                      children: [
+                        TextButton(
+                          style: styleButton(Colors.red),
+                          onPressed: () {},
+                          child: const Texts(
                               text: "Follow",
                               color: Color.fromARGB(255, 37, 16, 16)),
                         ),
-                        Icon(
+                        const Icon(
                           Icons.close,
                           color: Colors.white,
                         ),
