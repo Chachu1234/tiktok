@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:woff/widgets/profileimage.dart';
-
+import '../auth/login.dart';
+import '../common/common.dart';
 import 'album.dart';
 
 // ignore: must_be_immutable
@@ -21,7 +22,6 @@ class RightPanel extends StatefulWidget {
     this.profileImg,
     this.albumImg,
   });
-
   final Size size;
 
   @override
@@ -46,6 +46,7 @@ class _RightPanelState extends State<RightPanel> {
               height: 5,
             ),
             InkWell(
+<<<<<<< HEAD
               onTap: () {
                 setState(() {
                   isLiked = !isLiked;
@@ -55,6 +56,16 @@ class _RightPanelState extends State<RightPanel> {
                 });
               },
               child: Icon(
+=======
+              onTap: () async {
+                final bool? result = await Commonfun().checkuserlooged();
+                if (!result!) {
+                  // ignore: use_build_context_synchronously
+                  changepage(context);
+                }
+              },
+              child: const Icon(
+>>>>>>> 2118d8d42e9523ef3af21aaf798078111c615382
                 Icons.favorite,
                 size: 45,
                 color: isLiked
@@ -143,5 +154,11 @@ class _RightPanelState extends State<RightPanel> {
         ),
       ),
     );
+  }
+
+  changepage(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: ((context) {
+      return const LoginScreen();
+    })));
   }
 }
