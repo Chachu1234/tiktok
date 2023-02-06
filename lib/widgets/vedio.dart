@@ -10,12 +10,14 @@ class VideoPlayerItems extends StatefulWidget {
   final String? caption;
   final String? songName;
   final String? profileImg;
-  final String? likes;
-  final String? comments;
-  final String? shares;
+  final double? likes;
+  final double? bookmark;
+  final double? comments;
+  final double? shares;
   final String? albumImg;
   const VideoPlayerItems(
       {super.key,
+      this.bookmark,
       this.name,
       this.caption,
       this.songName,
@@ -29,6 +31,7 @@ class VideoPlayerItems extends StatefulWidget {
   // final Size size;
 
   @override
+  // ignore: library_private_types_in_public_api
   _VideoPlayerItemsState createState() => _VideoPlayerItemsState();
 }
 
@@ -58,10 +61,10 @@ class _VideoPlayerItemsState extends State<VideoPlayerItems> {
   Widget isPlaying() {
     return _videoController.value.isPlaying && !isShowPlaying
         ? Container()
-        : Icon(
+        : const Icon(
             Icons.play_arrow,
             size: 60,
-            color: Colors.white.withOpacity(0.8),
+            color: Colors.white,
           );
   }
 
@@ -91,15 +94,17 @@ class _VideoPlayerItemsState extends State<VideoPlayerItems> {
                   width: size.width,
                   decoration: const BoxDecoration(color: Colors.black),
                   child: Stack(
-                    fit: StackFit.expand,
+                    // fit: StackFit.expand,
                     children: <Widget>[
-                      SizedBox.expand(
-                        child: FittedBox(
-                          fit: BoxFit.fill,
-                          child: SizedBox(
-                            width: _videoController.value.size.width,
-                            height: _videoController.value.size.height,
-                            child: VideoPlayer(_videoController),
+                      InkWell(
+                        child: SizedBox.expand(
+                          child: FittedBox(
+                            fit: BoxFit.fill,
+                            child: SizedBox(
+                              width: _videoController.value.size.width,
+                              height: _videoController.value.size.height,
+                              child: VideoPlayer(_videoController),
+                            ),
                           ),
                         ),
                       ),
@@ -114,7 +119,7 @@ class _VideoPlayerItemsState extends State<VideoPlayerItems> {
                   width: size.width,
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(left: 15, top: 20, bottom: 10),
+                        const EdgeInsets.only(left: 25, top: 20, bottom: 0),
                     child: SafeArea(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,6 +145,7 @@ class _VideoPlayerItemsState extends State<VideoPlayerItems> {
                                   comments: widget.comments,
                                   // "${widget.comments}",
                                   shares: widget.shares,
+                                  bookmark: widget.bookmark,
                                   // "${widget.shares}",
                                   profileImg: widget.profileImg,
 

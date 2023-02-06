@@ -3,14 +3,17 @@ import 'package:woff/widgets/profileimage.dart';
 
 import 'album.dart';
 
-class RightPanel extends StatelessWidget {
-  final String? likes;
-  final String? comments;
-  final String? shares;
+// ignore: must_be_immutable
+class RightPanel extends StatefulWidget {
+  late double? likes;
+  late double? comments;
+  late double? shares;
   final String? profileImg;
   final String? albumImg;
-  const RightPanel({
+  late double? bookmark;
+  RightPanel({
     super.key,
+    this.bookmark,
     required this.size,
     this.likes,
     this.comments,
@@ -22,39 +25,61 @@ class RightPanel extends StatelessWidget {
   final Size size;
 
   @override
+  State<RightPanel> createState() => _RightPanelState();
+}
+
+class _RightPanelState extends State<RightPanel> {
+  bool isLiked = false;
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        height: size.height,
-        margin: const EdgeInsets.symmetric(horizontal: 10),
+        height: widget.size.height,
+        margin: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
-            getProfile(profileImg),
+            getProfile(widget.profileImg),
             const SizedBox(
               height: 5,
             ),
-            const InkWell(
+            InkWell(
+              onTap: () {
+                setState(() {
+                  isLiked = !isLiked;
+                  isLiked
+                      ? widget.likes = (widget.likes! + 1)
+                      : widget.likes = widget.likes! - 1;
+                });
+              },
               child: Icon(
                 Icons.favorite,
                 size: 45,
-                color: Colors.white,
+                color: isLiked
+                    ? const Color.fromARGB(255, 156, 10, 86)
+                    : Colors.white,
               ),
             ),
             const SizedBox(
               height: 5,
             ),
             Text(
-              "$likes",
+              widget.likes.toString(),
               style: const TextStyle(color: Colors.white, fontSize: 15),
             ),
             const SizedBox(
               height: 5,
               width: 0,
             ),
-            const InkWell(
-              child: Icon(
+            InkWell(
+              onTap: () {
+                setState(() {
+                  widget.comments = (widget.comments! + 1);
+                });
+              },
+              child: const Icon(
                 Icons.comment,
                 size: 45,
                 color: Colors.white,
@@ -64,15 +89,19 @@ class RightPanel extends StatelessWidget {
               height: 5,
             ),
             Text(
-              "$comments",
+              widget.comments.toString(),
               style: const TextStyle(fontSize: 15, color: Colors.white),
             ),
             const SizedBox(
               height: 5,
-              width: 0,
             ),
-            const InkWell(
-              child: Icon(
+            InkWell(
+              onTap: () {
+                setState(() {
+                  widget.bookmark = (widget.bookmark! + 1);
+                });
+              },
+              child: const Icon(
                 Icons.bookmark,
                 size: 45,
                 color: Colors.white,
@@ -82,27 +111,34 @@ class RightPanel extends StatelessWidget {
               height: 5,
             ),
             Text(
-              "$comments",
+              widget.bookmark.toString(),
               style: const TextStyle(fontSize: 15, color: Colors.white),
             ),
             const SizedBox(
               height: 5,
             ),
-            const CircleAvatar(
-              radius: 30,
-              child: Icon(Icons.share),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  widget.shares = widget.shares! + 1;
+                });
+              },
+              child: const CircleAvatar(
+                radius: 30,
+                child: Icon(Icons.share),
+              ),
             ),
             const SizedBox(
               height: 8,
             ),
             Text(
-              "$shares",
+              widget.shares.toString(),
               style: const TextStyle(color: Colors.white, fontSize: 15),
             ),
             const SizedBox(
               height: 8,
             ),
-            getAlbum(albumImg)
+            getAlbum(widget.albumImg)
           ],
         ),
       ),

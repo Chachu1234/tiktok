@@ -22,8 +22,9 @@ class Profilepage extends StatelessWidget {
         actions: [
           Row(
             children: [
-              CommmonIconButton(
-                  color: Colors.grey.withOpacity(0.3),
+              TextButton(
+                  style: styleButton(Colors.grey.withOpacity(0.3)),
+                  onPressed: () {},
                   child: const Texts(
                     text: "+ Add name",
                     color: Colors.black,
@@ -93,8 +94,9 @@ class Profilepage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CommmonIconButton(
-                    color: Colors.white,
+                  TextButton(
+                    style: styleButton(Colors.white),
+                    onPressed: () {},
                     child: Column(
                       children: [
                         const Texts(
@@ -103,14 +105,15 @@ class Profilepage extends StatelessWidget {
                           fontSize: 22,
                         ),
                         Texts(
-                          text: "Follower",
+                          text: "Followeing",
                           color: Colors.black.withOpacity(0.3),
                         )
                       ],
                     ),
                   ),
-                  CommmonIconButton(
-                    color: Colors.white,
+                  TextButton(
+                    style: styleButton(Colors.white),
+                    onPressed: () {},
                     child: Column(
                       children: [
                         const Texts(
@@ -119,14 +122,15 @@ class Profilepage extends StatelessWidget {
                           fontSize: 22,
                         ),
                         Texts(
-                          text: "Follower",
+                          text: "Followers",
                           color: Colors.black.withOpacity(0.3),
                         )
                       ],
                     ),
                   ),
-                  CommmonIconButton(
-                    color: Colors.white,
+                  TextButton(
+                    onPressed: () {},
+                    style: styleButton(Colors.white),
                     child: Column(
                       children: [
                         const Texts(
@@ -135,7 +139,7 @@ class Profilepage extends StatelessWidget {
                           fontSize: 22,
                         ),
                         Texts(
-                          text: "Follower",
+                          text: "Likes",
                           color: Colors.black.withOpacity(0.3),
                         )
                       ],
@@ -153,8 +157,9 @@ class Profilepage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CommmonIconButton(
-                      color: Colors.grey.withOpacity(0.3),
+                  TextButton(
+                      onPressed: () {},
+                      style: styleButton(Colors.grey.withOpacity(0.3)),
                       child: const Texts(
                         text: "Edit Profile",
                         color: Colors.black,
@@ -162,8 +167,9 @@ class Profilepage extends StatelessWidget {
                   const SizedBox(
                     width: 5,
                   ),
-                  CommmonIconButton(
-                      color: Colors.grey.withOpacity(0.3),
+                  TextButton(
+                      onPressed: () {},
+                      style: styleButton(Colors.grey.withOpacity(0.3)),
                       child: const Icon(
                         Icons.replay_rounded,
                         color: Colors.black,
@@ -177,8 +183,9 @@ class Profilepage extends StatelessWidget {
             Center(
               child: Container(
                 alignment: Alignment.center,
-                child: CommmonIconButton(
-                    color: Colors.grey.withOpacity(0.3),
+                child: TextButton(
+                    onPressed: () {},
+                    style: styleButton(Colors.grey.withOpacity(0.3)),
                     child: const Texts(
                       text: "+ Add Bio",
                       color: Colors.black,
@@ -221,23 +228,25 @@ class Profilepage extends StatelessWidget {
             Container(
               alignment: Alignment.center,
               child: Column(
-                children: const [
-                  Texts(
+                children: [
+                  const Texts(
                       text: "share a throwback photos",
                       color: Colors.black,
                       fontSize: 18),
                   // Text("share a throwback photos",
                   //     style: TextStyle(color: Colors.black, fontSize: 20)),
-                  SizedBox(
+                  const SizedBox(
                     height: 25,
                   ),
-                  CommmonIconButton(
-                      color: Colors.red,
-                      child: Texts(
-                        text: "Upload ",
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      )),
+                  TextButton(
+                    onPressed: () {},
+                    style: styleButton(Colors.red),
+                    child: const Texts(
+                      text: "Upload ",
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ),
