@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import 'package:woff/widgets/right.dart';
 import 'header.dart';
@@ -10,10 +11,10 @@ class VideoPlayerItems extends StatefulWidget {
   final String? caption;
   final String? songName;
   final String? profileImg;
-  final double? likes;
-  final double? bookmark;
-  final double? comments;
-  final double? shares;
+  final RxInt? likes;
+  final RxInt? bookmark;
+  final RxInt? comments;
+  final RxInt? shares;
   final String? albumImg;
   const VideoPlayerItems(
       {super.key,

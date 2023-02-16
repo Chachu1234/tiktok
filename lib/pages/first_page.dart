@@ -16,7 +16,7 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   int selectedIndex = 0;
   List<Widget> pages = <Widget>[
-    const HomePage(),
+    HomePage(),
     const SearchPage(),
     const UpLoadVideo(),
     const Inbox(),

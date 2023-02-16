@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:woff/pages/profile/common/for_profile.dart';
 import 'package:woff/widgets/Commons.dart';
 
-class Profilepage extends StatelessWidget {
+class Profilepage extends StatefulWidget {
   const Profilepage({super.key});
 
+  @override
+  State<Profilepage> createState() => _ProfilepageState();
+}
+
+class _ProfilepageState extends State<Profilepage> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -66,7 +71,6 @@ class Profilepage extends StatelessWidget {
                     color: Colors.blue,
                     imageUrl:
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHhvWhbP8LplFQ3gjrnbfv6wrEMP3orU_p2CcVV48f&s",
-                    // ignore: prefer_const_constructors
                     child: Center(
                         child: Icon(
                       Icons.add,
@@ -195,7 +199,6 @@ class Profilepage extends StatelessWidget {
             const SizedBox(
               height: 15,
             ),
-            // const Tabbar(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -233,8 +236,6 @@ class Profilepage extends StatelessWidget {
                       text: "share a throwback photos",
                       color: Colors.black,
                       fontSize: 18),
-                  // Text("share a throwback photos",
-                  //     style: TextStyle(color: Colors.black, fontSize: 20)),
                   const SizedBox(
                     height: 25,
                   ),

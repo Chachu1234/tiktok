@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:woff/pages/profile/common/for_profile.dart';
 
-class UpLoadVideo extends StatelessWidget {
+class UpLoadVideo extends StatefulWidget {
   const UpLoadVideo({super.key});
 
+  @override
+  State<UpLoadVideo> createState() => _UpLoadVideoState();
+}
+
+class _UpLoadVideoState extends State<UpLoadVideo> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(

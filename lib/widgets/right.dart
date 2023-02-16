@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:woff/controllers/state.dart';
 import 'package:woff/widgets/profileimage.dart';
+import 'package:woff/widgets/sample_data.dart';
 import '../auth/login.dart';
 import '../common/common.dart';
 import 'album.dart';
 
 // ignore: must_be_immutable
 class RightPanel extends StatefulWidget {
-  late double? likes;
-  late double? comments;
-  late double? shares;
+  late RxInt? likes;
+  late RxInt? comments;
+  late RxInt? shares;
   final String? profileImg;
   final String? albumImg;
-  late double? bookmark;
+  late RxInt? bookmark;
   RightPanel({
     super.key,
     this.bookmark,
@@ -23,6 +26,7 @@ class RightPanel extends StatefulWidget {
     this.albumImg,
   });
   final Size size;
+  final ProviderStates controllers = Get.put(ProviderStates());
 
   @override
   State<RightPanel> createState() => _RightPanelState();
@@ -70,9 +74,12 @@ class _RightPanelState extends State<RightPanel> {
             const SizedBox(
               height: 5,
             ),
-            Text(
-              widget.likes.toString(),
-              style: const TextStyle(color: Colors.white, fontSize: 15),
+            Obx(
+              () => Text(
+                controllers.likes.value.toString(),
+                // widget.shares.toString(),
+                style: const TextStyle(color: Colors.white, fontSize: 15),
+              ),
             ),
             const SizedBox(
               height: 5,
@@ -80,9 +87,10 @@ class _RightPanelState extends State<RightPanel> {
             ),
             InkWell(
               onTap: () {
-                setState(() {
-                  widget.comments = (widget.comments! + 1);
-                });
+                controllers.addcomments();
+                // setState(() {
+                //   widget.comments = (widget.comments! + 1);
+                // });
               },
               child: const Icon(
                 Icons.comment,
@@ -93,9 +101,12 @@ class _RightPanelState extends State<RightPanel> {
             const SizedBox(
               height: 5,
             ),
-            Text(
-              widget.comments.toString(),
-              style: const TextStyle(fontSize: 15, color: Colors.white),
+            Obx(
+              () => Text(
+                controllers.comments.value.toString(),
+                // widget.shares.toString(),
+                style: const TextStyle(color: Colors.white, fontSize: 15),
+              ),
             ),
             const SizedBox(
               height: 5,
@@ -107,9 +118,10 @@ class _RightPanelState extends State<RightPanel> {
                   // ignore: use_build_context_synchronously
                   changepage(context);
                 }
-                setState(() {
-                  widget.bookmark = (widget.bookmark! + 1);
-                });
+                controllers.addbookMarks();
+                // setState(() {
+                //   widget.bookmark = (widget.bookmark! + 1);
+                // });
               },
               child: const Icon(
                 Icons.bookmark,
@@ -120,9 +132,12 @@ class _RightPanelState extends State<RightPanel> {
             const SizedBox(
               height: 5,
             ),
-            Text(
-              widget.bookmark.toString(),
-              style: const TextStyle(fontSize: 15, color: Colors.white),
+            Obx(
+              () => Text(
+                controllers.bookMarks.value.toString(),
+                // widget.shares.toString(),
+                style: const TextStyle(color: Colors.white, fontSize: 15),
+              ),
             ),
             const SizedBox(
               height: 5,
@@ -134,9 +149,10 @@ class _RightPanelState extends State<RightPanel> {
                   // ignore: use_build_context_synchronously
                   changepage(context);
                 }
-                setState(() {
-                  widget.shares = widget.shares! + 1;
-                });
+                controllers.addshares();
+                // setState(() {
+                //   widget.shares = widget.shares! + 1;
+                // });
               },
               child: const CircleAvatar(
                 radius: 30,
@@ -146,9 +162,12 @@ class _RightPanelState extends State<RightPanel> {
             const SizedBox(
               height: 8,
             ),
-            Text(
-              widget.shares.toString(),
-              style: const TextStyle(color: Colors.white, fontSize: 15),
+            Obx(
+              () => Text(
+                controllers.shares.value.toString(),
+                // widget.shares.toString(),
+                style: const TextStyle(color: Colors.white, fontSize: 15),
+              ),
             ),
             const SizedBox(
               height: 8,

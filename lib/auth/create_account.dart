@@ -7,6 +7,7 @@ class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CreateAccountState createState() => _CreateAccountState();
 }
 
@@ -56,11 +57,13 @@ class _CreateAccountState extends State<CreateAccount> {
                 if (message!.contains('Success')) {
                   final prefs = await SharedPreferences.getInstance();
                   await prefs.setBool('islogged', true);
+                  // ignore: use_build_context_synchronously
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const FirstPage()));
                 }
-                   ScaffoldMessenger.of(context).showSnackBar(
-                   SnackBar(
+                // ignore: use_build_context_synchronously
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
                     content: Text(message),
                   ),
                 );
